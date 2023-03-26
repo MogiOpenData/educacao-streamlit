@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>pydeck</title>
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <script src='https://cdn.jsdelivr.net/npm/@deck.gl/jupyter-widget@~8.8.*/dist/index.js'></script>
+    <style>
+    body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#deck-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+#deck-container canvas {
+  z-index: 1;
+  background: none;
+}
+    </style>
+  </head>
+  <body>
+    <div id="deck-container">
+    </div>
+  </body>
+  <script>
+    const container = document.getElementById('deck-container');
+    const jsonInput = {
+  "initialViewState": {
+    "bearing": 0,
+    "latitude": -22.385131,
+    "longitude": 46.948222,
+    "pitch": 0,
+    "zoom": 10
+  },
+  "layers": [
+    {
+      "@@type": "ScatterplotLayer",
+      "data": [
+        {
+          "ESCOLA": "Maria Diva",
+          "ID": 1,
+          "LATITUDE": -22.385131,
+          "LONGITUDE": -46.948222,
+          "Quantidade Estudantes": 10
+        },
+        {
+          "ESCOLA": "FEG",
+          "ID": 2,
+          "LATITUDE": -22.368789,
+          "LONGITUDE": -46.949347,
+          "Quantidade Estudantes": 20
+        },
+        {
+          "ESCOLA": "Padre Armani",
+          "ID": 3,
+          "LATITUDE": -22.371988,
+          "LONGITUDE": -46.941008,
+          "Quantidade Estudantes": 30
+        }
+      ],
+      "filled": true,
+      "getFillColor": [
+        255,
+        140,
+        0
+      ],
+      "getLineColor": [
+        0,
+        0,
+        0
+      ],
+      "getPosition": "@@=[LATITUDE, LONGITUDE]",
+      "getRadius": "@@=Quantidade Estudantes",
+      "id": "e72b9086-8fa9-4ee6-8b31-45af3114caf9",
+      "lineWidthMinPixels": 1,
+      "opacity": 0.8,
+      "pickable": true,
+      "radiusMaxPixels": 100,
+      "radiusMinPixels": 1,
+      "radiusScale": 6,
+      "stroked": true
+    }
+  ],
+  "mapProvider": "carto",
+  "mapStyle": "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
+  "mapboxKey": "",
+  "views": [
+    {
+      "@@type": "MapView",
+      "controller": true
+    }
+  ]
+};
+    const tooltip = {'text': '{name}\n{address}'};
+    const customLibraries = null;
+    const configuration = null;
+
+    const deckInstance = createDeck({
+                  container,
+      jsonInput,
+      tooltip,
+      customLibraries,
+      configuration
+    });
+
+  </script>
+</html>
